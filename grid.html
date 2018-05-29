@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<title>Responsive Cures</title>
+	<meta name="viewport" content="width=device-width" />
+    <meta name="description" content="Cures for common responsive design problems.  ">
+    <meta name="keywords" content="Responsive Design, HTML, CSS, Mobile, SASS, flex, flexbox, Lewis Barron, Developer, UI, user interface">
+
+    <!-- Normalize styles -->
+    <link rel="stylesheet" type="text/css" href="assets/css/normalize.css" media="all" />
+
+    <!-- Google fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
+	<!-- Main styles -->
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css" media="all" />
+
+    <!-- Favicons: -->
+    <!-- Standard -->
+    <link rel="icon" type="image/x-icon" href="images/favicon/favicon.ico" />
+    <!-- Retina -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/favicon/apple-touch-icon-144x144-precomposed.png">
+    <!-- iPad -->
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/favicon/apple-touch-icon-72x72-precomposed.png">
+    <!-- iPhone -->
+    <link rel="apple-touch-icon-precomposed" href="images/favicon/apple-touch-icon-precomposed.png">
+</head>
+<body>
+<div class="wrapper">
+    <header class="header">
+        <h1>Responsive Cur(s)es</h1>
+        <p>Tackling responsive design, by Lewis Barron.</p>
+    </header>
+    <div class="contents">
+        <h2>CSS Grid Layout</h2>
+
+        <p>This is a basic grid using the CSS Grid Layout:</p>
+
+        <div class="example example-simple-grid">
+            <div>Cell 1</div>
+            <div>Cell 2</div>
+            <div>Cell 3</div>
+            <div>Cell 4</div>
+            <div>Cell 5</div>
+            <div>Cell 6</div>
+            <div>Cell 7</div>
+            <div>Cell 8</div>
+            <div>Cell 9</div>
+        </div>
+
+        <h3>Auto fill versus auto fit</h3>
+
+        <p>In the first example we use the auto-fill keyword for repeat. We get as many tracks with a minimum of 200 pixels and maximum of 1fr as will fit in the container.</p>
+
+        <div class="example example-grid-auto-fill">
+            <div>Cell 1</div>
+            <div>Cell 2</div>
+            <div>Cell 3</div>
+        </div>
+
+        <p>In the second example we use the auto-fit keyword for repeat. We get as many tracks with a minimum of 200 pixels and maximum of 1fr as will fit in the container. After auto-placement any empty tracks are collapsed to 0. So our items can expand to take up the remaining space.</p>
+
+        <div class="example example-grid-auto-fit">
+            <div>Cell 1</div>
+            <div>Cell 2</div>
+            <div>Cell 3</div>
+        </div>
+
+		<p>But what if you need a more complicated grid? Perhaps a grid that resembles the floor plans for a house:</p>
+
+        <div class="example example-house-l1">
+            <div class="example-house-l1__study">
+                <p>Study</p>
+            </div>
+            <div class="example-house-l1__toilet">
+                <p>Toilet</p>
+            </div>
+            <div class="example-house-l1__hallway">
+                <p>Hallway</p>
+            </div>
+            <div class="example-house-l1__garage">
+                <p>Garage</p>
+            </div>
+            <div class="example-house-l1__lounge-kitchen">
+                <div class="example-house-l1__item example-house-l1__item--stairs">
+                    Stairs
+                </div>
+            </div>
+        </div>
+
+        <div class="example example-grid-page-layout">
+            <div class="example-grid-page-layout__region-header">
+                HEADER
+            </div>
+            <div class="example-grid-page-layout__region-primary-content">
+                <p>This the main content of the page I need my users to read.</p>
+
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+                <picture>
+                    <source srcset="content/images/image-scale--small.jpg" media="(max-width: 480px)">
+                    <source srcset="content/images/image-scale--medium.jpg" media="(max-width: 800px)">
+                    <source srcset="content/images/image-scale--rich.jpg">
+                    <img src="content/images/image-scale--rich.jpg" alt="Kapiti Coast"> <!-- Fallback in case a browser doesn't support the picture tag -->
+                </picture>
+
+                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
+            </div>
+            <div class="example-grid-page-layout__region-secondary-content">
+                <p>This is not the most important content on the page, but it's still something I need to tell the user once they work their way down to here.</p>
+
+                <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.</p>
+            </div>
+            <div class="example-grid-page-layout__region-right-hand-column">
+                <div class="example-grid-page-layout__item">
+                    Have you ever wondered?
+
+                    <ul>
+                        <li>What if Nasa had the same budget as the US military?</li>
+                        <li>What if your entire life is nothing but an illusion?</li>
+                        <Li>If you win lotto, are your chances of winning it a second time still the same?</Li>
+                        <li>If you could be a soup, what kind of soup would you be?</li>
+                        <li>What would happen if you put a Chameleon on a mirror?</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="example-grid-page-layout__region-footer">
+                This is the footer of my page.
+            </div>
+        </div>
+</body>
+</html>

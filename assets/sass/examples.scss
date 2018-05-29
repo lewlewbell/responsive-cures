@@ -1,0 +1,205 @@
+.example {
+  margin-bottom: 30px;
+}
+
+.example-double-column {
+  display: flex;
+  flex: 1;
+}
+
+.example-vertical-alignment {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 150px;
+  background-color: #EDE0E0;
+  font-size: 2em;
+}
+
+.example-border-box {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 30px;
+  border: solid 4px #D27676;
+  background-color: #EDE0E0;
+}
+
+.example-unequal-blocks {
+  display: flex;
+  padding: 20px 0;
+  text-align: center;
+  background-color: #EFE3E3;
+
+  div { padding: 20px 0; }
+
+  div:nth-of-type(1) { background-color: #D8D8D8; }
+  div:nth-of-type(2) { background-color: #D27676; }
+  div:nth-of-type(3) { background-color: #D8D8D8; }
+}
+
+.example-simple-grid {
+  display: grid;
+  grid-template-columns: 40% 20% 40%;
+  grid-template-rows: 10em 15em 6em;
+  grid-gap: 0.5em;
+
+  div {
+    border: 1px solid #000;
+    padding: 1em;
+    background-color: #0F0DF0;
+    font-size: 150%;
+    color: #FFF;
+  }
+}
+
+.example-grid-auto-fill, .example-grid-auto-fit {
+  display: grid;
+  grid-gap: 10px;
+
+  div {
+    border: 1px solid #000;
+    padding: 1em;
+    background-color: #0F0DF0;
+    font-size: 150%;
+    color: #FFF;
+  }
+}
+
+.example-grid-auto-fill { grid-template-columns: repeat(auto-fill, minmax(200px,1fr)); }
+.example-grid-auto-fit { grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); }
+
+.example-house-l1 {
+  display: grid;
+  height: 1024px;
+  border: 5px solid #D8D8D8;
+  grid-gap: 2px;
+  grid-template-columns: [col1-start] 40% [col2-start] 20% [col3-start] 40% [col3-end];
+  grid-template-rows: [row1-start] 25% [row2-start] 25% [row3-start] 25% [row4-start] 25% [row4-end];
+
+  div {
+    border: 1px solid #000;
+  }
+
+  &__study {
+    grid-column: col1-start;
+    grid-row: row1-start;
+  }
+
+  &__hallway {
+    grid-column: col2-start;
+    grid-row: row1-start / row3-start;
+  }
+
+  &__garage {
+    grid-column: col3-start;
+    grid-row: row1-start / row3-start;
+  }
+
+  &__toilet {
+    grid-column: col1-start;
+    grid-row: row2-start;
+  }
+
+  &__lounge-kitchen {
+    display: grid;
+    grid-column: col1-start / col3-end;
+    grid-row: row3-start / row4-end;
+    grid-template-columns: [sub-col1-start] 25% [sub-col2-start] 25% [sub-col3-start] 25% [sub-col4-start] 25% [sub-col4-end];
+    grid-template-rows: [sub-row1-start] 25% [sub-row2-start] 25% [sub-row3-start] 25% [sub-row4-start] 25% [sub-row4-end];
+  }
+
+  &__item {
+    border: none;
+    text-indent: -9999px;
+  }
+
+  &__item--stairs {
+    grid-column: sub-col4-start / sub-col4-end;
+    grid-row: sub-row1-start  / sub-row1-start;
+    background: repeating-linear-gradient(
+      to right,
+      #000,
+      #000 10px,
+      #fff 10px,
+      #fff 20px
+    );
+  }
+}
+
+.example-grid-page-layout {
+  display: grid;
+  grid-template-columns: [left-col-start] 80% [right-col-start] 20% [right-col-end]
+  grid-template-rows: [header-start] 30em [primary-content-start] 25% [secondary-start] 25% [footer-start] 25% [footer-end];
+}
+
+.scale-iframe { margin-bottom: 30px; }
+
+.scale-iframe--intrinsic-ratio {
+  position: relative;
+  height: 0;
+
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.scale-iframe--transform-scale {
+  overflow: hidden;
+
+  iframe { transform-origin: 0 0; }
+}
+
+.responsive-table {
+  @media
+  only screen and (max-width: 760px),
+  (min-device-width: 768px) and (max-device-width: 1024px)  {
+
+  	/* Force table to not be like tables anymore */
+  	table, thead, tbody, th, td, tr {
+  		display: block;
+  	}
+
+  	/* Hide table headers (but not display: none;, for accessibility) */
+  	thead tr {
+  		position: absolute;
+  		top: -9999px;
+  		left: -9999px;
+  	}
+
+  	tr { border: 1px solid #ccc; }
+
+  	td {
+  		/* Behave  like a "row" */
+  		border: none;
+  		border-bottom: 1px solid #eee;
+  		position: relative;
+  		padding-left: 50%;
+  	}
+
+  	td:before {
+  		/* Now like a table header */
+  		position: absolute;
+  		/* Top/left values mimic padding */
+  		top: 6px;
+  		left: 6px;
+  		width: 45%;
+  		padding-right: 10px;
+  		white-space: nowrap;
+  	}
+
+  	/*
+  	Label the data
+  	*/
+  	td:nth-of-type(1):before { content: "City name"; }
+  	td:nth-of-type(2):before { content: "Population"; }
+  	td:nth-of-type(3):before { content: "Country"; }
+  	td:nth-of-type(4):before { content: "Mayor"; }
+  	td:nth-of-type(5):before { content: "Demonym"; }
+  	td:nth-of-type(6):before { content: "Interesting fact"; }
+  }
+}

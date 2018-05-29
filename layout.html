@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<title>Responsive Cures</title>
+	<meta name="viewport" content="width=device-width" />
+    <meta name="description" content="Cures for common responsive design problems.  ">
+    <meta name="keywords" content="Responsive Design, HTML, CSS, Mobile, SASS, flex, flexbox, Lewis Barron, Developer, UI, user interface">
+
+    <!-- Normalize styles -->
+    <link rel="stylesheet" type="text/css" href="assets/css/normalize.css" media="all" />
+
+    <!-- Google fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
+	<!-- Main styles -->
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css" media="all" />
+
+    <!-- Favicons: -->
+    <!-- Standard -->
+    <link rel="icon" type="image/x-icon" href="images/favicon/favicon.ico" />
+    <!-- Retina -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/favicon/apple-touch-icon-144x144-precomposed.png">
+    <!-- iPad -->
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/favicon/apple-touch-icon-72x72-precomposed.png">
+    <!-- iPhone -->
+    <link rel="apple-touch-icon-precomposed" href="images/favicon/apple-touch-icon-precomposed.png">
+</head>
+<body>
+<div class="wrapper">
+    <header class="header">
+        <h1>Responsive Cur(s)es</h1>
+        <p>Tackling responsive design, by Lewis Barron.</p>
+    </header>
+    <div class="contents">
+        <h2>Layout</h2>
+
+        <h3 name="example-equal-width-columns">Equal width columns</h3>
+
+        <p>creating two columns that will fill the container and always maintain an equal width and height, regardless of the content they hold.</p>
+
+        <div class="example example-double-column">
+            <div style="width: 100%; padding: 20px; background-color: #D9DAD9">
+                <p>This is my first column, it has a great deal of wonderful content that covers just about anything your imagination can possibly comprehend.</p>
+            </div>
+
+            <div style="width: 100%; padding: 20px; background-color: #B6CEB4">
+                <p>This column has hardly any content.</p>
+            </div>
+        </div>
+
+        <h3 name="example-equal-width-columns">Vertical alignment</h3>
+
+        <p>While not exclusive to responsive design, vertical alignment is certainly worth a mention. Since the birth of CSS, vertical alignment has been a thorn in the side of the UI developer because there was never a simple solution, and vertical-alignment just never seemed to live up to its name, at least not without headaches.</p>
+
+        <p>Flexbox finally introduces vertical alignment, and it does exactly what it says on the box!</p>
+
+        <div class="example example-vertical-alignment">
+            <span>I'm vertically aligned!</span>
+        </div>
+
+        <h3 name="example-border-box">Border box</h3>
+
+        <p>Arguably the best yet most subtle feature introduced by CSS3 was the border-box property. It was such a godsend for front-end developers that CSS Tricks decided to observe <a href="https://css-tricks.com/international-box-sizing-awareness-day/" title="International Box-Sizing Awareness Day">International Box-Sizing Awareness Day</a> in February.</p>
+
+        <p>This adored property makes styling responsive layouts many times easier to accomplish by simply specfying that an elements padding and border should be calculated as a part of the total width and height.</p>
+
+        <div class="example example-border-box">My border, padding, width and height are calculated as one so I don't overflow and cause nasty scrollbars!</div>
+
+        <h3 name="example-growing-blocks">Growing blocks</h3>
+
+        <p>Flexbox also allows us to grow elements using the flex-grow property. In this scenario we have three blocks, each of them are set to "flex-grow: 1". This causes all three blocks to fill the width of the container, taking an equal share of available space.</p>
+
+        <div class="example example-unequal-blocks">
+            <div style="flex-grow: 1">First</div>
+            <div style="flex-grow: 1">Second</div>
+            <div style="flex-grow: 1">Third</div>
+        </div>
+
+        <p>By setting the center block to "flex-grow: 2", this causes the center block to take up 50% of space, while the first and last blocks share the remaining space.</p>
+
+        <div class="example example-unequal-blocks">
+            <div style="flex-grow: 1">First</div>
+            <div style="flex-grow: 2">Second</div>
+            <div style="flex-grow: 1">Third</div>
+        </div>
+
+        <h3 name="tables">Tables</h3>
+
+        <p>While the days of using tables to layout a website are thankfully a thing of the past, we do still of course find ourselves using tables for their intended purpose; creating tabular data, but how do we deal with large tables on a smaller screen?</p>
+
+        <p>Developers have used various different techniques for tackling responsive tables, from turning the table into a <a href="http://jsbin.com/apane6/14/">mini graphic</a>, to converting tables into conveniently sized graphs using JavaScript, but one of the more simple and practical solutions I have found is one by <a href="https://css-tricks.com/responsive-data-tables/">Chris Coyier</a>, to simply reformat tables on smaller screens, although it does require injecting the header content via CSS which may or may not be a problem.</p>
+
+        <div class="responsive-table">
+            <table>
+                <thead>
+                <tr>
+                    <th>City name</th>
+                    <th>Population</th>
+                    <th>Country</th>
+                    <th>Mayor</th>
+                    <th>Demonym</th>
+                    <th>Interesting fact</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Wellington</td>
+                    <td>405,000</td>
+                    <td>New Zealand</td>
+                    <td>Justin Lester</td>
+                    <td>Wellingtonian</td>
+                    <td>Wellington is the world's southernmost capital of a sovereign state.</td>
+                </tr>
+                <tr>
+                  <td>Perth</td>
+                  <td>2,066,564</td>
+                  <td>Australia</td>
+                  <td>Lisa Scaffidi</td>
+                  <td>Perthites</td>
+                  <td>Perth is closer to Singapore than it is to Sydney.</td>
+                </tr>
+                <tr>
+                  <td>Prince Rupert</td>
+                    <td>12,508</td>
+                  <td>Canada</td>
+                  <td>Lee Brain</td>
+                  <td>Nobody knows</td>
+                  <td>Students paid their way through school by working in the fishing industry.</td>
+                </tr>
+                <tr>
+                  <td>Osaka</td>
+                    <td>19,341,976 (metro)</td>
+                  <td>Japan</td>
+                  <td>Toru Hashimoto</td>
+                  <td>Osakian</td>
+                  <td>Osaka is the second largest city in Japan by daytime population.</td>
+                </tr>
+                <tr>
+                  <td>Trondheim</td>
+                    <td>274,958</td>
+                  <td>Norway</td>
+                  <td>Rita Ottervik</td>
+                  <td>Trondhjemmer</td>
+                  <td>Served as the capital of Norway during the Viking Age until 1217.</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

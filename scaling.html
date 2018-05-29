@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<title>Responsive Cures</title>
+	<meta name="viewport" content="width=device-width" />
+    <meta name="description" content="Cures for common responsive design problems.  ">
+    <meta name="keywords" content="Responsive Design, HTML, CSS, Mobile, SASS, flex, flexbox, Lewis Barron, Developer, UI, user interface">
+
+    <!-- Normalize styles -->
+    <link rel="stylesheet" type="text/css" href="assets/css/normalize.css" media="all" />
+
+    <!-- Google fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
+	<!-- Main styles -->
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css" media="all" />
+
+    <!-- Favicons: -->
+    <!-- Standard -->
+    <link rel="icon" type="image/x-icon" href="images/favicon/favicon.ico" />
+    <!-- Retina -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/favicon/apple-touch-icon-144x144-precomposed.png">
+    <!-- iPad -->
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/favicon/apple-touch-icon-72x72-precomposed.png">
+    <!-- iPhone -->
+    <link rel="apple-touch-icon-precomposed" href="images/favicon/apple-touch-icon-precomposed.png">
+</head>
+<body>
+<div class="wrapper">
+    <header class="header">
+        <h1>Responsive Cur(s)es</h1>
+        <p>Tackling responsive design, by Lewis Barron.</p>
+    </header>
+    <div class="contents">
+        <h2>Scaling</h2>
+
+        <h3 name="example-scale-intrinsic-ratios">Images</h3>
+
+        <p>Add the styles; width: 100% and height: auto to an image tag and you have yourself a responsive image, but does this provide the best experience for the user?</p>
+
+        <p>Delivering a super high resolution image to a mobile user, to then scale it down for a small screen is not only an almost criminal waste of resources, but it's not going to provide the best experience for a user on a slower network connection</p>
+
+        <p>The solution is the HTML5 picture tag, which allows us to serve different versions of the same image depending on the users current viewport.</p>
+
+        <p>The example below is a photo of New Zealand's beautiful Kapiti Coast, taken from the mountainous Kapiti island, but what we're doing here is serving an option of three different versions of this image, a small, medium or rich version. You can test this by simply resizing your window and watching as the image transitions to different versions. Your browser is downloading the image it deems most appropriate for your viewport size.</p>
+
+        <picture>
+            <source srcset="content/images/image-scale--small.jpg" media="(max-width: 480px)">
+            <source srcset="content/images/image-scale--medium.jpg" media="(max-width: 800px)">
+            <source srcset="content/images/image-scale--rich.jpg">
+            <img src="content/images/image-scale--rich.jpg" alt="Kapiti Coast"> <!-- Fallback in case a browser doesn't support the picture tag -->
+        </picture>
+
+		<h3 name="example-scale-intrinsic-ratios">Iframes scaling using intrinsic ratios</h3>
+
+        <p>Some examples of iframes we can scale using an intrinsic ratio:</p>
+
+        <p>YouTube video, size 560x315 (16:9 aspect ratio):</p>
+        <div class="scale-iframe">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/H-oH-TELcLE" frameborder="0" allowfullscreen></iframe>
+        </div>
+
+        <p>YouTube video, size 420x315 (4:3 aspect ratio):</p>
+        <div class="scale-iframe">
+            <iframe width="420" height="315" src="https://www.youtube.com/embed/H-oH-TELcLE" allowfullscreen></iframe>
+        </div>
+
+        <h3 name="example-scale-transform">Iframes scaling using CSS3 transform</h3>
+
+        <p>But what if you end up with an iframe, and its contents are not responsive? Intrinsic scaling will not work in this situation, luckily we have the CSS3 transform property which can physically scale the element and all its contents, an ideal solution for static designed advertisements. This form of scaling should be treated as a last resort for dealing with fixed elements.</p>
+
+        <div class="scale-iframe">
+            <iframe src="https://dequeuniversity.com/library/responsive/1-non-responsive" width="1024" height="768" frameborder="0" style="border:0; overflow: hidden" allowfullscreen></iframe>
+        </div>
+    </div>
+</div>
+
+<script>
+var scaleIframes = function(trigger) {
+    // SCALING OF IFRAMES
+    // A list of sources we know are compatible with intrinsic ratio scaling.
+    // Intrinsic ratios allow us to make an iframe responsive, but it will only
+    // work correctly if the contents of the iframe are responsive too.
+    // See: http://alistapart.com/article/creating-intrinsic-ratios-for-video
+    const scalableSources = [
+        'youtube.com',
+        'youtube-nocookie.com',
+        'google.co.nz/maps/',
+        'google.com/maps/'
+    ];
+
+    // We want to look for keyords in our iframe sources rather than entire
+    // paths, like "youtube.com" for example, so we use regex
+    const scalableRegex = new RegExp(`^.*(${scalableSources.join('|')}).*$`)
+
+    // Get all iframe containers we want to scale on this page
+    let iframeContainers = document.getElementsByClassName('scale-iframe');
+
+    // Loop through the iframe containers
+    for (var i = 0; i < iframeContainers.length; i++) {
+        // Get next iframe container in array
+        let iframeContainer = iframeContainers[i];
+
+        // Get the iframes inside this iframe container and store in array
+        let iframes = iframeContainer.getElementsByTagName('iframe');
+
+        // We only expect to find one iframe inside our iframe container
+        // so we select first iframe from the array
+        let iframe = iframes[0];
+
+        // Get width and height of current iframe
+        let iframeWidth = iframe.clientWidth;
+        let iframeHeight = iframe.clientHeight;
+
+        if (scalableRegex.test(iframe.src)) {
+            // Divide height by width to calculate its aspect ratio
+            let aspectRatio = iframeHeight / iframeWidth;
+
+            // Calculate current aspect ratio of HTML asset to apply padding %
+            iframeContainer.style.paddingBottom = (aspectRatio * 100) + '%';
+
+            // If scaling was triggered on page load, not orientation change
+            if (trigger==='onload') {
+                iframeContainer.classList.add(iframeContainer.classList+'--intrinsic-ratio');
+            }
+        } else {
+            // If iframe is not recgonised as intrinsically scalable, we will
+            // physically scale as if it were an image, using transform scale.
+
+            // For the targeted width you could use any element width or an
+            // actual number. In this case we are using the iframe container
+            // because we know this element always fills the content wrapper.
+            var targetedWidth = iframeContainer.clientWidth;
+            var targetedHeight;
+
+            // Calculate the scale factor
+            var scaleFactor = (targetedWidth / iframeWidth);
+
+            // Add new transform scale property
+            iframe.style.transform = 'scale(' + scaleFactor + ')',
+
+            // When we scale an element it will change pixel ratio but not the
+            // actual pixel size, as a result we end up with excess white space.
+            // We need to resize the container to fix this problem
+            targetedHeight = iframeHeight / iframeWidth * targetedWidth;
+            iframeContainer.style.height = targetedHeight+'px';
+
+            // If scaling was triggered on page load, not orientation change
+            if (trigger==='onload') {
+                // Add transform scale class for generic styling
+                iframeContainer.classList.add(iframeContainer.classList+'--transform-scale');
+            }
+        }
+    }
+}
+
+window.addEventListener("orientationchange", function() {
+    scaleIframes('orientation');
+});
+
+window.onload = scaleIframes('onload');
+
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+@import 'extensions/all';
+
+h1, h2, h3, h4, h5, p { margin: 0 0 20px 0; }
+
+/*
+Generic Styling, for Desktops/Laptops
+*/
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 30px;
+}
+
+/* Zebra striping */
+tr:nth-of-type(odd) {
+  background-color: #F0ECEC;
+}
+
+th {
+  background: #333;
+  color: white;
+  font-weight: bold;
+}
+
+td, th {
+  padding: 6px;
+  border: 1px solid #ccc;
+  text-align: left;
+}
+
+body {
+  font-family: 'Roboto', Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: #2A333C;
+  padding: 0 10px;
+}
+
+.wrapper {
+  max-width: 1024px;
+  width: 100%;
+  margin: 60px auto 0;
+}
